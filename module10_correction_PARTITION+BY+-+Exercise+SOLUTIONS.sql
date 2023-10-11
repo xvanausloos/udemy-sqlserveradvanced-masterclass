@@ -15,7 +15,6 @@ FROM AdventureWorks2022.Production.Product A
 
 
 --Exercise 2:
-
 SELECT 
   ProductName = A.Name,
   A.ListPrice,
@@ -23,10 +22,10 @@ SELECT
   ProductCategory = C.Name,
   AvgPriceByCategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name)
 
-FROM AdventureWorks2019.Production.Product A
-  JOIN AdventureWorks2019.Production.ProductSubcategory B
+FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
     ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2019.Production.ProductCategory C
+  JOIN AdventureWorks2022.Production.ProductCategory C
     ON B.ProductCategoryID = C.ProductCategoryID
 
 
@@ -40,15 +39,14 @@ SELECT
   AvgPriceByCategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name),
   AvgPriceByCategoryAndSubcategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name, B.Name)
 
-FROM AdventureWorks2019.Production.Product A
-  JOIN AdventureWorks2019.Production.ProductSubcategory B
+FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
     ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2019.Production.ProductCategory C
+  JOIN AdventureWorks2022.Production.ProductCategory C
     ON B.ProductCategoryID = C.ProductCategoryID
 
 
 --Exercise 4:
-
 SELECT 
   ProductName = A.Name,
   A.ListPrice,
@@ -58,8 +56,8 @@ SELECT
   AvgPriceByCategoryAndSubcategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name, B.Name),
   ProductVsCategoryDelta = A.ListPrice - AVG(A.ListPrice) OVER(PARTITION BY C.Name)
 
-FROM AdventureWorks2019.Production.Product A
-  JOIN AdventureWorks2019.Production.ProductSubcategory B
+FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
     ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2019.Production.ProductCategory C
+  JOIN AdventureWorks2022.Production.ProductCategory C
     ON B.ProductCategoryID = C.ProductCategoryID
